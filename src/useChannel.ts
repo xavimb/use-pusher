@@ -30,6 +30,7 @@ export function useChannel<T extends Channel & PresenceChannel>(
     const pusherChannel = client?.subscribe(channelName);
 
     setChannel(pusherChannel as T);
+    return () => client?.unsubscribe(channelName);
   }, [channelName, client]);
   return channel;
 }
